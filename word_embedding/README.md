@@ -8,6 +8,11 @@ To represent a word by a vector with certain dimension.
 - [Gensim word2vec tutorial](https://github.com/SauceCat/NLP-Playground/blob/master/word_embedding/word2vec.ipynb)
 - [Gensim fastText tutorial](https://github.com/SauceCat/NLP-Playground/blob/master/word_embedding/FastText_Tutorial.ipynb)
 - [Load pretrained vectors in Gensim](https://github.com/SauceCat/NLP-Playground/blob/master/word_embedding/load_pretrained_vectors.ipynb)
+
+## Packages
+- nltk
+- Gensim
+- Jieba (for Chinese)
 <br><br>
 
 ## one-hot vector  
