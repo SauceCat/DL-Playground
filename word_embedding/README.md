@@ -1,7 +1,7 @@
 
 ## Represent word as a vector
 To represent a word by a vector with certain dimension.  
-
+<br><br>
 ## one-hot vector  
 Represent every word as an (V, 1) vector, with all 0s and one 1 at the index of that word
 in the sorted english language and V is the size of the vocabulary.  
@@ -9,7 +9,7 @@ in the sorted english language and V is the size of the vocabulary.
 - does not provide any notion of similarity between words
     
   <br><img src="https://github.com/SauceCat/NLP-Playground/blob/master/word_embedding/images/one-hot.png" width=60%/><br> 
-
+<br><br>
 ## SVD based methods
 Generate an co-occurrence matrix, X. Apply SVD on X, get X = USV^T. 
 Select the first k columns of U to get a k-dimensional word vectors.  
@@ -29,7 +29,7 @@ Select the first k columns of U to get a k-dimensional word vectors.
 - **Conclusions**  
 SVD based methods do not scale well for big matrices (always sparse) and it is hard to incorporate new words or documents.
 However, count-based method make an efficient use of the statistics.  
-
+<br><br>
 ## Iteration Based Methods - Word2vec
 Iteration-based methods capture cooccurrence of words one at a time instead of capturing all cooccurence 
 counts directly like in SVD method. Word2vec is actually a software package includes 2 algorithms (CBOW, Skip-gram) 
@@ -103,7 +103,7 @@ edge to reach w2 from the root, so
 To train the model, our goal is still to minimize the negative log likelihood **-log P(w|wi)**.
 But instead of updating output vectors per word, we update the vectors of the nodes in the binary 
 tree that are in the path from root to leaf node.
-
+<br><br>
 ## fastText
 Same as word2vec, but enrich the vocabulary with word ngrams.  
 For the fastText method provided by Gensim, hyperparameters for training the model follow the same pattern as Word2Vec, but with three additional parameters: 
@@ -113,7 +113,7 @@ For the fastText method provided by Gensim, hyperparameters for training the mod
 
 Parameters min_n and max_n control the lengths of character ngrams that each word is broken down into while training and looking up embeddings. If max_n is set to 0, or to be lesser than min_n, no character ngrams are used, and the model effectively reduces to Word2Vec.
 
-
+<br><br>
 ## Global Vectors for Word Representation (GloVe)
 
 ### Comparison with previous models
@@ -151,7 +151,7 @@ Parameters min_n and max_n control the lengths of character ngrams that each wor
 GloVe model efficiently leverages global statistical information by by training only on the nonzero elements in a wordword
 co-occurrence matrix, and produces a vector space with meaningful sub-structure.
 
-
+<br><br>
 ## Evaluation of Word Vectors
 ### Intrinsic Evaluation Example: Word Vector Analogies: a : b : : c : ?
 <img src="https://github.com/SauceCat/NLP-Playground/blob/master/word_embedding/images/eval01.png" width=35%>    
