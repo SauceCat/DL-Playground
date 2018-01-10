@@ -2,7 +2,7 @@
 ## Represent word as a vector
 To represent a word by a vector with certain dimension.  
 
-### 1. one-hot vector  
+## one-hot vector  
 Represent every word as an (V, 1) vector, with all 0s and one 1 at the index of that word
 in the sorted english language and V is the size of the vocabulary.  
 - represent each word as a completely independent entity
@@ -10,7 +10,7 @@ in the sorted english language and V is the size of the vocabulary.
     
   <br><img src="https://github.com/SauceCat/NLP-Playground/blob/master/word_embedding/images/one-hot.png" width=60%/><br> 
 
-### 2. SVD based methods
+## SVD based methods
 Generate an co-occurrence matrix, X. Apply SVD on X, get X = USV^T. 
 Select the first k columns of U to get a k-dimensional word vectors.  
 - two ways to construct **word co-occurrence matrix**
@@ -30,38 +30,39 @@ Select the first k columns of U to get a k-dimensional word vectors.
 SVD based methods do not scale well for big matrices (always sparse) and it is hard to incorporate new words or documents.
 However, count-based method make an efficient use of the statistics.  
 
-### 3. Iteration Based Methods - Word2vec
+## Iteration Based Methods - Word2vec
 Iteration-based methods capture cooccurrence of words one at a time instead of capturing all cooccurence 
 counts directly like in SVD method. Word2vec is actually a software package includes 2 algorithms (CBOW, Skip-gram) 
 and 2 training methods (negative sampling and hierarchical softmax).  
 
-- **continuous bag-of-words (CBOW)**  
+### continuous bag-of-words (CBOW)
 Predicts a center word from the surroudning context in terms of word vectors. V is the input word matrix,
 U is the output word matrix. For each word we want to learn both the input and output vectors.  
-    <br><img src="https://github.com/SauceCat/NLP-Playground/blob/master/word_embedding/images/CBOW.png" width=30% /><br> 
-    - Generate one hot word vectors for the input context with size **2m**:   
-    **(x(c-m),...,x(c-1),x(c+1),...,x(c+m) with shape (V, 1))**  
-    - Get the embedded word vectors for the context: (**n** is the embedded dimension)  
-    **(v(c-m)=Vx(c-m),v(c-m+1)=Vx(c-m+1),...,v(c+m)=Vx(c+m) with shape (n, 1))**  
-    - Average all context word vectors, get **v(hat)**.  
-    - Generate a score vector **z=Uv(hat)(with shape(V, 1))**.  
-    - Turn the scores into probabilities using **softmax** function.  
-    - Calculate the cross entropy **H(y(hat), y)** between the predicted probability distribution and 
-    the one hot vector of the true center word.  
-    <br><img src="https://github.com/SauceCat/NLP-Playground/blob/master/word_embedding/images/CBOW_obj.png" width=60% /><br> 
+<br><img src="https://github.com/SauceCat/NLP-Playground/blob/master/word_embedding/images/CBOW.png" width=30% /><br> 
+- Generate one hot word vectors for the input context with size **2m**:   
+**(x(c-m),...,x(c-1),x(c+1),...,x(c+m) with shape (V, 1))**  
+- Get the embedded word vectors for the context: (**n** is the embedded dimension)  
+**(v(c-m)=Vx(c-m),v(c-m+1)=Vx(c-m+1),...,v(c+m)=Vx(c+m) with shape (n, 1))**  
+- Average all context word vectors, get **v(hat)**.  
+- Generate a score vector **z=Uv(hat)(with shape(V, 1))**.  
+- Turn the scores into probabilities using **softmax** function.  
+- Calculate the cross entropy **H(y(hat), y)** between the predicted probability distribution and 
+the one hot vector of the true center word.  
+<br><img src="https://github.com/SauceCat/NLP-Playground/blob/master/word_embedding/images/CBOW_obj.png" width=60% /><br> 
     
-- **Skip-gram (SG)**  
+### Skip-gram (SG)  
 Predicts the context words from a center word. V is the input word matrix,
 U is the output word matrix. For each word we want to learn both the input and output vectors.  
-    <br><img src="https://github.com/SauceCat/NLP-Playground/blob/master/word_embedding/images/SG.png" width=30% /><br> 
-    - Generate one hot word vector for the center word **x, with shape(V, 1)**   
-    - Get the embedded word vector for the center word: **v(c)=Vx with shape(n, 1)**   
-    - Generate a score vector **z=Uv(c)(with shape(V, 1))**.  
-    - Turn the scores into probabilities using **softmax** function.  
-    - Calculate the cross entropy **H(y(hat), y)** between the predicted probability distribution and 
-    the one hot vector of the true context words.  
-    <br><img src="https://github.com/SauceCat/NLP-Playground/blob/master/word_embedding/images/SG_obj.png" width=60% /><br> 
-    
+<br><img src="https://github.com/SauceCat/NLP-Playground/blob/master/word_embedding/images/SG.png" width=30% /><br> 
+- Generate one hot word vector for the center word **x, with shape(V, 1)**   
+- Get the embedded word vector for the center word: **v(c)=Vx with shape(n, 1)**   
+- Generate a score vector **z=Uv(c)(with shape(V, 1))**.  
+- Turn the scores into probabilities using **softmax** function.  
+- Calculate the cross entropy **H(y(hat), y)** between the predicted probability distribution and 
+the one hot vector of the true context words.  
+<br><img src="https://github.com/SauceCat/NLP-Playground/blob/master/word_embedding/images/SG_obj.png" width=60% /><br> 
+
+### Training methods
 - **Negative Sampling**  
 For softmax function, the summation over the whole vocabulary(V) is computationally huge. 
 A simple idea is to approximate it by sampling the negative samples.  
@@ -102,6 +103,15 @@ edge to reach w2 from the root, so
 To train the model, our goal is still to minimize the negative log likelihood **-log P(w|wi)**.
 But instead of updating output vectors per word, we update the vectors of the nodes in the binary 
 tree that are in the path from root to leaf node.
+
+## fastText
+Same as word2vec, but enrich the vocabulary with word ngrams.  
+For the fastText method provided by Gensim, hyperparameters for training the model follow the same pattern as Word2Vec, but with three additional parameters: 
+- min_n: min length of char ngrams (Default 3)
+- max_n: max length of char ngrams (Default 6)
+- bucket: number of buckets used for hashing ngrams (Default 2000000)  
+
+Parameters min_n and max_n control the lengths of character ngrams that each word is broken down into while training and looking up embeddings. If max_n is set to 0, or to be lesser than min_n, no character ngrams are used, and the model effectively reduces to Word2Vec.
 
 
 ## Global Vectors for Word Representation (GloVe)
