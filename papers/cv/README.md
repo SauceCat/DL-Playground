@@ -15,3 +15,6 @@ Billion-scale Commodity Embedding for E-commerce Recommendation in Alibaba https
 
 ## Computer Vision Arts
 **Google Art & Culture Experiments**: https://experiments.withgoogle.com/arts-culture
+
+## Datasets
+**Chinese Text in the Wild**: https://arxiv.org/pdf/1803.00085.pdf
