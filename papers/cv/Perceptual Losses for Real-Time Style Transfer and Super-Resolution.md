@@ -11,7 +11,13 @@ We consider image transformation problems, where an input image is transformed i
 
 
 ### Notes
-1. **perceptual loss functions**
-The per-pixel losses used by these methods do not capture perceptual differences between output and ground-truth images. For example, considering two identical images offset from each other by one pixel, despite their perceptual similarity they would be very different as measured by per-pixel losses. 
+1. **perceptual loss functions**  
+The per-pixel losses used by these methods do not capture perceptual differences between output and ground-truth images. For example, considering two identical images offset from each other by one pixel, despite their perceptual similarity they would be very different as measured by per-pixel losses.  
+High-quality images can be generated using perceptual loss functions based not on differences between pixels but instead on differences between high-level image feature representations extracted from pretrained convolutional neural networks.  
 
+2. **feed-forward transformation networks**  
+We train feed-forward transformation networks for image transformation tasks, but rather than using per-pixel loss functions depending only on low-level pixel information, we train our networks using perceptual loss functions that depend on high-level features from a pretrained loss network. During training, perceptual losses measure image similarities more robustly than per-pixel losses, and at test-time the transformation networks run in real-time.  
 
+3. **style transfer**  
+We train one image transformation network per style target for several hand-picked style targets and compare our results with the baseline approach of Gatys et al.   
+We train style transfer networks on the MS-COCO dataset. We resize each of the 80k training images to 256 × 256 and train with a batch size of 4 for 40k iterations, giving roughly two epochs over the training data.
