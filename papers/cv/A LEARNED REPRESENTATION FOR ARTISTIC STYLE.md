@@ -1,8 +1,8 @@
 ### A LEARNED REPRESENTATION FOR ARTISTIC STYLE 
 **Authors:**   
-Dumoulin, Vincent
-Shlens, Jonathon
-Kudlur, Manjunath
+Dumoulin, Vincent   
+Shlens, Jonathon    
+Kudlur, Manjunath   
 
 **Year**: 2017  
   
