@@ -1,5 +1,5 @@
 ### A LEARNED REPRESENTATION FOR ARTISTIC STYLE 
-**Authors:**   
+**Authors:**    
 Dumoulin, Vincent   
 Shlens, Jonathon    
 Kudlur, Manjunath   
