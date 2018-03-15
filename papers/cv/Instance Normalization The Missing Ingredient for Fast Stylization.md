@@ -1,4 +1,4 @@
-### Instance Normalization: The Missing Ingredient for Fast Stylization Dmitry
+### Instance Normalization: The Missing Ingredient for Fast Stylization
 **Authors:**  
 Ulyanov, Dmitry  
 Vedaldi, Andrea  
