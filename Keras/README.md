@@ -9,4 +9,8 @@ https://github.com/Ahmkel/Keras-Project-Template
 - **Coloring B&W portraits with neural networks**   
 https://github.com/emilwallner/Coloring-greyscale-images-in-Keras
 
+- **DeblurGAN**  
+https://github.com/raphaelmeudec/deblur-gan
+
+
 
