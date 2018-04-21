@@ -12,5 +12,7 @@ https://github.com/emilwallner/Coloring-greyscale-images-in-Keras
 - **DeblurGAN**  
 https://github.com/raphaelmeudec/deblur-gan
 
+- **Predicting Cryptocurrency Prices With Deep Learning**  
+https://dashee87.github.io/deep%20learning/python/predicting-cryptocurrency-prices-with-deep-learning/
 
 
