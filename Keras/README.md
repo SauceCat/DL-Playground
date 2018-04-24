@@ -18,4 +18,6 @@ https://dashee87.github.io/deep%20learning/python/predicting-cryptocurrency-pric
 - **Toxic Comment Classification Challenge**  
 https://medium.com/@srjoglekar246/first-time-with-kaggle-a-convnet-to-classify-toxic-comments-with-keras-ef84b6d18328?from=singlemessage&isappinstalled=0
 
+- **Deploy Keras Model with Flask as Web App in 10 Minutes**  
+https://github.com/mtobeiyf/keras-flask-deploy-webapp
 
